@@ -79,12 +79,13 @@ function InputHead({setDataForms}) {
     
   }
 
+
   const handleSubmitForm = (event) => {
     event.preventDefault();
 
     console.log(forms)
 
-    if(!forms.title || !forms.cost || !forms.InOrOut){
+    if(!forms.title || !forms.cost || !forms.InOrOut || !forms.date){
       {alert("Form can't be null")}
       return
     }
@@ -102,7 +103,8 @@ function InputHead({setDataForms}) {
     setFroms(() => ({
       title : "",
       cost : 0,
-      InOrOut : ""
+      InOrOut : "",
+      date : ""
     }))
 
   }
@@ -112,7 +114,7 @@ function InputHead({setDataForms}) {
       <div className='gird md:grid-cols-3 grid-cols-2 gap-4 md:w-[48em] w-[20rem]'>
             <div className='h-[4rem] mb-2  md:hidden '>
               <label>
-                <input type="date" className="px-2 rounded-sm h-[4rem] min-w-full shadow-2xl focus:outline-none" />
+                <input type="date" name='date' value={forms.date} onChange={onChangeInput} className="px-2 rounded-sm h-[4rem] min-w-full shadow-2xl focus:outline-none" />
               </label>
             </div>
           <div className='flex gap-4'>
@@ -135,7 +137,7 @@ function InputHead({setDataForms}) {
             <div className='hidden sm:hidden md:flex'>
             <div className='h-[4rem] '>
               <label>
-                <input type="date" className="px-2 rounded-md  border-gray-300 h-[4rem] min-w-full shadow-2xl focus:outline-none" />
+                <input type="date" name='date' value={forms.date} onChange={onChangeInput} className="px-2 rounded-md  border-gray-300 h-[4rem] min-w-full shadow-2xl focus:outline-none" />
               </label>
             </div>
             </div>

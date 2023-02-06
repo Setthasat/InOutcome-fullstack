@@ -4,7 +4,7 @@ function TableRow({ data }) {
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                02/05/2023
+                {data.date}
             </th>
             <td className="px-6 py-4">
                 {data.title}
@@ -48,10 +48,10 @@ function Table({ dataForms }) {
                                 Title
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                income
+                                in
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                outcome
+                                out
                             </th>
                         </tr>
                     </thead>
