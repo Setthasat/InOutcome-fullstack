@@ -4,8 +4,6 @@ import { useState } from "react"
 
 function App() {
   const [dataForms, setDataForms] = useState([])
-  console.log(dataForms)
-
 
   return (
     <div className="h-screen bg-slate-600">

@@ -19,10 +19,11 @@ function InputHead({setDataForms}) {
     {
       title : "",
       cost : 0,
-      // incomeForms : false,
-      // outcomeForms : false
+      InOrOut : "",
+      date : ""
     }
   )
+
 
   const onChangeInput = (event) => {
     const { name, value } = event.target
@@ -35,10 +36,13 @@ function InputHead({setDataForms}) {
   const handleIncome = (event) => {
     event.preventDefault();
 
-    console.log(forms);
+    setFroms(prev => ({
+      ...prev,
+      InOrOut : "income"
+    }))
 
     if(buttonOnToggle.outCome === true){
-      setButtonOnToggle(prev => ({
+      setButtonOnToggle(() => ({
         outCome: false,
         inCome: true
       }));
@@ -55,6 +59,10 @@ function InputHead({setDataForms}) {
   const handleOutcome = (event) => {
     event.preventDefault();
 
+    setFroms(prev => ({
+      ...prev,
+      InOrOut : "outcome"
+    }))
     if(buttonOnToggle.inCome === true){
       setButtonOnToggle(() => ({
         outCome: true,
@@ -74,28 +82,15 @@ function InputHead({setDataForms}) {
   const handleSubmitForm = (event) => {
     event.preventDefault();
 
-    if(!forms.title || ! forms.cost){
+    console.log(forms)
+
+    if(!forms.title || !forms.cost || !forms.InOrOut){
       {alert("Form can't be null")}
       return
     }
 
-    // if(buttonOnToggle.inCome === true){
-    //   console.log("hello");
-    //   setFroms(prev => ({
-    //     incomeForms : !prev.outcomeForms,
-    //     outcomeForms : prev.outcomeForms
-    //   }))
-    // }
-
-    // else {
-    //   console.log("hlwew")
-    //   setFroms(() => ({
-    //     incomeForms : prev.incomeForms,
-    //     outcomeForms : !prev.incomeForms
-    //   }))
-    // }
-
     setDataForms(prev => [...prev, forms])
+    
 
     setButtonOnToggle(() => ({
       inCome : false,
@@ -107,8 +102,7 @@ function InputHead({setDataForms}) {
     setFroms(() => ({
       title : "",
       cost : 0,
-      income : false,
-      outcome : false 
+      InOrOut : ""
     }))
 
   }
@@ -158,7 +152,7 @@ function InputHead({setDataForms}) {
                   value={forms.title}
                   onChange={onChangeInput}
                   autoFocus 
-                  className="rounded-sm h-[4rem] min-w-full shadow-2xl  pl-[16px] placeholder:italic placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2" placeholder="  Title . . ."/>
+                  className="rounded-sm h-[4rem] min-w-full shadow-2xl  pl-[16px] placeholder:italic placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2 font-sans" placeholder="  Title . . ."/>
               </label>
             </div>
           </div>
@@ -172,7 +166,7 @@ function InputHead({setDataForms}) {
                   value={forms.cost}
                   onChange={onChangeInput}
                   min="0" 
-                  className="appearance-none rounded-sm h-[4rem] min-w-full shadow-2xl pl-[16px] placeholder:italic placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2" placeholder="  Cost . . ."/>
+                  className="appearance-none rounded-sm h-[4rem] min-w-full shadow-2xl pl-[16px] placeholder:italic placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2 font-sans" placeholder="  Cost . . ."/>
               </label>
             </div>
             <div className=' w-[12rem] h-[4rem] col-span-1 flex justify-center items-center'>
