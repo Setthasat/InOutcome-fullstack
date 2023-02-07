@@ -1,18 +1,30 @@
 import React from 'react'
 
-function TableRow({ data }) {
+
+
+function TableRow({ dataForm, setDataForms }) {
+    
+    const handleDelete = (e) => {
+        console.log("hi")
+        e.preventDefault();
+        setDataForms((prev) => {
+            var newTable = prev.filter((element, _) => dataForm.id  !== element.id)
+            return newTable
+        })
+    }
+
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {data.date}
+                {dataForm.date}
             </th>
             <td className="px-6 py-4">
-                {data.title}
+                {dataForm.title}
             </td>
-            {data.InOrOut === "income" ? (
+            {dataForm.InOrOut === "income" ? (
                 <>
                     <td className="px-6 py-4 ">
-                        {data.cost}
+                        {dataForm.cost}
                     </td>
                     <td className="px-6 py-4">
                         -
@@ -24,21 +36,23 @@ function TableRow({ data }) {
                         -
                     </td>
                     <td className="px-6 py-4">
-                        {data.cost}
+                        {dataForm.cost}
                     </td>
                 </>
             )}
-            
+            <td className="px-6 py-4 flex justify-center items-center">
+                <button onClick={handleDelete} className="text-white px-3 border-b-[5px] shadow-2xl bg-red-500 border-b-red-600">x</button>
+            </td>
 
         </tr>
     )
 }
 
-function Table({ dataForms }) {
+function Table({ dataForms, setDataForms }) {
     return (
         <div className='flex justify-center bg-slate-600 h-auto text-white'>
-            <div className="relative overflow-x-auto">
-                <table className="md:w-[56em] w-[16rem] text-sm text-left text-gray-500 dark:text-gray-400">
+            <div className="relative overflow-x-auto border-r-">
+                <table className="md:w-[56em] w-[10rem] text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -53,11 +67,14 @@ function Table({ dataForms }) {
                             <th scope="col" className="px-6 py-3">
                                 out
                             </th>
+                            <th scope="col" className="px-6 py-3 flex justify-center items-center">
+                                Delete
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {dataForms.map((data, index) => (
-                            <TableRow key={index} data={data} />
+                        {dataForms.map((dataForm, index) => (
+                            <TableRow key={index} dataForm={dataForm} setDataForms={setDataForms}/>
                         ))}
                     </tbody>
                 </table>

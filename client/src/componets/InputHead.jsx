@@ -1,4 +1,13 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
+function ErrorPopUp() {
+  return (
+    <>
+    hello world
+    </>
+  )
+}
 
 const buttonIncomeOutComeStateUp = (color) => {
   return `border-b-[12px] hover:border-4 hover:bg-white border-b-gray-300 duration-500 w-[8rem] min-w-full h-[4rem] ${color} bg-white rounded-lg font-bold italic`
@@ -8,8 +17,9 @@ const buttonIncomeOutComeStateDown = (color) => {
   return `border-4 min-w-full h-[4rem] bg-white rounded-lg bg-white shadow-lg ${color} font-bold italic`
 }
 
-function InputHead({setDataForms}) {
+function InputHead({setDataForms, setFormsError}) {
 
+  
   const [buttonOnToggle, setButtonOnToggle] = React.useState({
     inCome : false,
     outCome: false
@@ -17,6 +27,7 @@ function InputHead({setDataForms}) {
 
   const[forms, setFroms] = React.useState(
     {
+      id : uuidv4(),
       title : "",
       cost : 0,
       InOrOut : "",
@@ -63,6 +74,7 @@ function InputHead({setDataForms}) {
       ...prev,
       InOrOut : "outcome"
     }))
+
     if(buttonOnToggle.inCome === true){
       setButtonOnToggle(() => ({
         outCome: true,
@@ -83,34 +95,45 @@ function InputHead({setDataForms}) {
   const handleSubmitForm = (event) => {
     event.preventDefault();
 
-    console.log(forms)
+    let { cost, title, InOrOut, date } = forms;
 
-    if(!forms.title || !forms.cost || !forms.InOrOut || !forms.date){
-      {alert("Form can't be null")}
-      return
+    if(typeof cost !== "number"){
+      cost = parseInt(cost);
     }
 
-    setDataForms(prev => [...prev, forms])
-    
+    if(!title || !InOrOut || !date || !cost){
+      setFormsError(true)
+      return 
+    }
 
+    console.log(forms)
+
+    setDataForms(prev => [...prev, {
+      cost: cost,
+      title: title,
+      InOrOut: InOrOut,
+      date: date
+    }])
+    
     setButtonOnToggle(() => ({
       inCome : false,
       outCome: false
     }))
 
-    console.log(forms);
-
     setFroms(() => ({
+      id : uuidv4(),
       title : "",
       cost : 0,
       InOrOut : "",
       date : ""
     }))
 
+    setFormsError(false)
+
   }
 
   return (
-    <div className="flex justify-center items-center h-[48rem]">
+    <div className="flex justify-center items-center h-[40rem]">
       <div className='gird md:grid-cols-3 grid-cols-2 gap-4 md:w-[48em] w-[20rem]'>
             <div className='h-[4rem] mb-2  md:hidden '>
               <label>
