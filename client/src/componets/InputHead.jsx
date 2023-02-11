@@ -38,6 +38,9 @@ function InputHead({setDataForms, setFormsError}) {
 
   const onChangeInput = (event) => {
     const { name, value } = event.target
+    if(name === "cost"){
+      console.log("hi")
+    }
     setFroms(prev => ({
       ...prev,
       [name]: value
@@ -177,7 +180,7 @@ function InputHead({setDataForms, setFormsError}) {
                   value={forms.title}
                   onChange={onChangeInput}
                   autoFocus 
-                  className="rounded-sm h-[4rem] min-w-full shadow-2xl  pl-[16px] placeholder:italic placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2 font-sans" placeholder="  Title . . ."/>
+                  className="rounded-sm h-[4rem] min-w-full shadow-2xl  pl-[16px]  placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2 font-sans" placeholder="  Title . . ."/>
               </label>
             </div>
           </div>
@@ -188,10 +191,10 @@ function InputHead({setDataForms, setFormsError}) {
                 <input 
                   type="number" 
                   name='cost'
+                  min="0"
                   value={forms.cost}
-                  onChange={onChangeInput}
-                  min="0" 
-                  className="appearance-none rounded-sm h-[4rem] min-w-full shadow-2xl pl-[16px] placeholder:italic placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2 font-sans" placeholder="  Cost . . ."/>
+                  onChange={onChangeInput} 
+                  className="appearance-none rounded-sm h-[4rem] min-w-full shadow-2xl pl-[16px]  placeholder:font-bold focus:outline-none focus:ring-sky-500 focus:ring-2 font-sans" placeholder="  Cost . . ."/>
               </label>
             </div>
             <div className=' w-[12rem] h-[4rem] col-span-1 flex justify-center items-center'>

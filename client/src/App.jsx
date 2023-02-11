@@ -14,7 +14,7 @@ function App() {
       <InputHead setDataForms={setDataForms} setFormsError={setFormsError}  />
       <Table dataForms={dataForms} setDataForms={setDataForms}/>
       { formsError === true ? (
-          <ErrorPOP setFormsError={setFormsError} formsError={formsError}/>
+          <ErrorPOP setFormsError={setFormsError} />
         ) : (
           <></>
         )}
