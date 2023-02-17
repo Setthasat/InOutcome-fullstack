@@ -1,17 +1,13 @@
 import React from 'react'
 
 
+function TableRow({ dataForm, setDataForms, dataForms}) {
 
-function TableRow({ dataForm, setDataForms }) {
+//    const handleDelete = (e) => {
+//         e.preventDefault();
+//         setDataForms(dataForms.filter(items => items.id  !== id))
+//     } 
     
-    const handleDelete = (e) => {
-        console.log("hi")
-        e.preventDefault();
-        setDataForms((prev) => {
-            var newTable = prev.filter((element, _) => dataForm.id  !== element.id)
-            return newTable
-        })
-    }
 
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -41,7 +37,14 @@ function TableRow({ dataForm, setDataForms }) {
                 </>
             )}
             <td className="px-6 py-4 flex justify-center items-center">
-                <button onClick={handleDelete} className="text-white px-3 border-b-[5px] shadow-2xl bg-red-500 border-b-red-600">x</button>
+                <button onClick={(e) => {
+                    e.preventDefault()
+                    setDataForms(dataForms.filter(items => items.id !== dataForm.id))
+                    // setDataForms((prev) => {
+                    //     var newTable = prev.filter((items, _) => items.id !== dataForms.id)
+                    //     return newTable
+                    // })
+                }} className="text-white px-3 border-b-[5px] shadow-2xl bg-red-500 border-b-red-600">x</button>
             </td>
 
         </tr>
@@ -74,10 +77,20 @@ function Table({ dataForms, setDataForms }) {
                     </thead>
                     <tbody>
                         {dataForms.map((dataForm, index) => (
-                            <TableRow key={index} dataForm={dataForm} setDataForms={setDataForms}/>
+                            <TableRow key={index} dataForm={dataForm} dataForms={dataForms} setDataForms={setDataForms}/>
                         ))}
                     </tbody>
+                    
                 </table>
+                {dataForms.length > 0 ? (
+                    <div className='flex justify-center items-center mt-187788'>
+                        <button className='bg-slate-700 w-[1.5rem] mx-[1px]'> {'<'} </button>
+                        <button className='bg-slate-700 w-[1.5rem] mx-[1px]'> {'>'}</button>
+                    </div>
+                ) : 
+                 <></>
+                }
+               
             </div>
         </div>
     )

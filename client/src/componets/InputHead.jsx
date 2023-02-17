@@ -31,9 +31,9 @@ function InputHead({ setDataForms, setFormsError }) {
 
   const onChangeInput = (event) => {
     const { name, value } = event.target
-    if (name === "cost") {
-      console.log("hi")
-    }
+    // if (name === "cost") {
+    //   console.log("hi")
+    // }
     setFroms(prev => ({
       ...prev,
       [name]: value
