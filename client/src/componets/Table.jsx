@@ -1,12 +1,16 @@
 import React from 'react'
 
 
-function TableRow({ dataForm, setDataForms, dataForms}) {
+function TableRow({ dataForm, setDataForms}) {
 
-//    const handleDelete = (e) => {
-//         e.preventDefault();
-//         setDataForms(dataForms.filter(items => items.id  !== id))
-//     } 
+   const handleDelete = (e) => {
+        e.preventDefault()
+        // setDataForms(dataForms.filter(items => items.id !== dataForm.id))
+        setDataForms((prev) => {
+            var newTable = prev.filter((items, _) => items.id !== dataForm.id)
+            return newTable
+        })
+    } 
     
 
     return (
@@ -37,14 +41,7 @@ function TableRow({ dataForm, setDataForms, dataForms}) {
                 </>
             )}
             <td className="px-6 py-4 flex justify-center items-center">
-                <button onClick={(e) => {
-                    e.preventDefault()
-                    setDataForms(dataForms.filter(items => items.id !== dataForm.id))
-                    // setDataForms((prev) => {
-                    //     var newTable = prev.filter((items, _) => items.id !== dataForms.id)
-                    //     return newTable
-                    // })
-                }} className="text-white px-3 border-b-[5px] shadow-2xl bg-red-500 border-b-red-600">x</button>
+                <button onClick={handleDelete} className="text-white px-3 border-b-[5px] shadow-2xl bg-red-500 border-b-red-600">x</button>
             </td>
 
         </tr>
@@ -77,13 +74,13 @@ function Table({ dataForms, setDataForms }) {
                     </thead>
                     <tbody>
                         {dataForms.map((dataForm, index) => (
-                            <TableRow key={index} dataForm={dataForm} dataForms={dataForms} setDataForms={setDataForms}/>
+                            <TableRow key={index} dataForm={dataForm} setDataForms={setDataForms}/>
                         ))}
                     </tbody>
                     
                 </table>
                 {dataForms.length > 0 ? (
-                    <div className='flex justify-center items-center mt-187788'>
+                    <div className='flex justify-center items-center mt-1'>
                         <button className='bg-slate-700 w-[1.5rem] mx-[1px]'> {'<'} </button>
                         <button className='bg-slate-700 w-[1.5rem] mx-[1px]'> {'>'}</button>
                     </div>

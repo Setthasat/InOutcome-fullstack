@@ -87,7 +87,7 @@ function InputHead({ setDataForms, setFormsError }) {
 
   }
 
-  const handleValidateInput = (e) => {
+  const handleValidateInput = (event) => {
     if (!/[0-9]/.test(event.key)) {
       event.preventDefault();
     }
@@ -97,7 +97,7 @@ function InputHead({ setDataForms, setFormsError }) {
   const handleSubmitForm = (event) => {
     event.preventDefault();
 
-    let { cost, title, InOrOut, date } = forms;
+    let { cost, title, InOrOut, date, id } = forms;
 
     if (typeof cost !== "number") {
       cost = parseInt(cost);
@@ -114,7 +114,8 @@ function InputHead({ setDataForms, setFormsError }) {
       cost: cost,
       title: title,
       InOrOut: InOrOut,
-      date: date
+      date: date,
+      id : id
     }])
 
     setButtonOnToggle(() => ({
