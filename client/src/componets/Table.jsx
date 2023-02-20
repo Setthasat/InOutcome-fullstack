@@ -1,4 +1,5 @@
 import React from 'react'
+import { AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 
 
 function TableRow({ dataForm, setDataForms}) {
@@ -81,8 +82,8 @@ function Table({ dataForms, setDataForms }) {
                 </table>
                 {dataForms.length > 0 ? (
                     <div className='flex justify-center items-center mt-1'>
-                        <button className='bg-slate-700 w-[1.5rem] mx-[1px]'> {'<'} </button>
-                        <button className='bg-slate-700 w-[1.5rem] mx-[1px]'> {'>'}</button>
+                        <button className='bg-slate-700 mx-[2px]'> <AiOutlineArrowLeft /> </button>
+                        <button className='bg-slate-700 mx-[2px]'> <AiOutlineArrowRight /></button>
                     </div>
                 ) : 
                  <></>

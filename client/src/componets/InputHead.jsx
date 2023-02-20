@@ -1,5 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import { GetDate } from '../utils/main'
 
 
 const buttonIncomeOutComeStateUp = (color) => {
@@ -103,7 +104,11 @@ function InputHead({ setDataForms, setFormsError }) {
       cost = parseInt(cost);
     }
 
-    if (!title || !InOrOut || !date || !cost) {
+    if (!date) {
+      date = GetDate()
+    }
+
+    if (!title || !InOrOut || !cost) {
       setFormsError(true)
       return
     }
