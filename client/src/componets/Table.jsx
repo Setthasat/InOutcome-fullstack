@@ -1,18 +1,18 @@
-import React from 'react'
-import { AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
+import { useState, useEffect} from 'react'
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 
 
-function TableRow({ dataForm, setDataForms}) {
+function TableRow({ dataForm, setDataForms }) {
 
-   const handleDelete = (e) => {
+    const handleDelete = (e) => {
         e.preventDefault()
         // setDataForms(dataForms.filter(items => items.id !== dataForm.id))
         setDataForms((prev) => {
             var newTable = prev.filter((items, _) => items.id !== dataForm.id)
             return newTable
         })
-    } 
-    
+    }
+
 
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -50,48 +50,56 @@ function TableRow({ dataForm, setDataForms}) {
 }
 
 function Table({ dataForms, setDataForms }) {
-    return (
-        <div className='flex justify-center bg-slate-600 h-auto text-white'>
-            <div className="relative overflow-x-auto border-r-">
-                <table className="md:w-[56em] w-[10rem] text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Date
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Title
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                in
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                out
-                            </th>
-                            <th scope="col" className="px-6 py-3 flex justify-center items-center">
-                                Delete
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dataForms.map((dataForm, index) => (
-                            <TableRow key={index} dataForm={dataForm} setDataForms={setDataForms}/>
-                        ))}
-                    </tbody>
-                    
-                </table>
-                {dataForms.length > 0 ? (
-                    <div className='flex justify-center items-center mt-1'>
-                        <button className='bg-slate-700 mx-[2px]'> <AiOutlineArrowLeft /> </button>
-                        <button className='bg-slate-700 mx-[2px]'> <AiOutlineArrowRight /></button>
-                    </div>
-                ) : 
-                 <></>
-                }
-               
+
+    const [startIndex, setStartIndex] = useState(0)
+    const [lastIndedx, setLastIndex] = useState(5)
+    const [arrSlice, setArrSlice] = useState(null)
+
+
+
+    if (dataForms.length > 0) {
+        return (
+            <div className='flex justify-center bg-slate-600 h-auto text-white'>
+                <div className="relative overflow-x-auto border-r-">
+                    <table className="md:w-[56em] w-[10rem] text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Date
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Title
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    in
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    out
+                                </th>
+                                <th scope="col" className="px-6 py-3 flex justify-center items-center">
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dataForms.map((dataForm, index) => (
+                                <TableRow key={index} dataForm={dataForm} setDataForms={setDataForms} />
+                            ))}
+                        </tbody>
+
+                    </table>
+                    {dataForms.length >= 5 ? (
+                        <div className='flex justify-center items-center mt-1'>
+                            <button className='bg-slate-700 mx-[2px]' onClick={increaseIndexArray}> <AiOutlineArrowLeft /> </button>
+                            <button className='bg-slate-700 mx-[2px]' onClick={decreaseIndexArray}> <AiOutlineArrowRight /></button>
+                        </div>
+                    ) :
+                        <></>
+                    }
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Table

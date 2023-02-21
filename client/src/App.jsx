@@ -7,8 +7,6 @@ function App() {
   
   const [dataForms, setDataForms] = useState([])
   const [formsError, setFormsError] = useState(false)
-  const [prevIndex, setPrevIndex] = useState(0)
-  const [indexArray, setIndexArray] = useState(4)
 
 
   return (
