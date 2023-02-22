@@ -141,7 +141,8 @@ function InputHead({ setDataForms, setFormsError }) {
   }
 
   return (
-    <div className="flex justify-center items-center h-[40rem]">
+    <div>
+    <div className="flex justify-center items-center h-[40rem] bg-[#006abc]">
       <div className='gird md:grid-cols-3 grid-cols-2 gap-4 md:w-[48em] w-[20rem]'>
         <div className='h-[4rem] mb-2  md:hidden '>
           <label>
@@ -208,6 +209,7 @@ function InputHead({ setDataForms, setFormsError }) {
           </div>
         </form>
       </div>
+    </div>
     </div>
   )
 }
