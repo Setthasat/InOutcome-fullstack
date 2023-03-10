@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const FormsSchema = new mongoose.Schema({
+    id : {
+        type : String,
+        require : true 
+    },
     title : {
         type: String,
         require: true,
@@ -10,7 +14,7 @@ const FormsSchema = new mongoose.Schema({
         require: true
     },
     date : {
-        type: Date,
+        type: String,
         require: true
     },
     InOrOut : {

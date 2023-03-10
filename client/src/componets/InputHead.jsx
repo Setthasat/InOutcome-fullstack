@@ -1,7 +1,7 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { GetDate } from '../utils/main'
-
+import axios from 'axios'
 
 const buttonIncomeOutComeStateUp = (color) => {
   return `border-b-[12px] hover:border-4 hover:bg-white border-b-gray-300 duration-500 w-[8rem] min-w-full h-[4rem] ${color} bg-white rounded-lg font-bold italic`
@@ -23,7 +23,7 @@ function InputHead({ setDataForms, setFormsError }) {
     {
       id: uuidv4(),
       title: "",
-      cost: "",
+      cost: "",               
       InOrOut: "",
       date: ""
     }
@@ -95,7 +95,7 @@ function InputHead({ setDataForms, setFormsError }) {
   }
 
 
-  const handleSubmitForm = (event) => {
+  const handleSubmitForm = async(event) => {
     event.preventDefault();
 
     let { cost, title, InOrOut, date, id } = forms;
@@ -114,6 +114,24 @@ function InputHead({ setDataForms, setFormsError }) {
     }
 
     console.log(forms)
+
+    const data = {
+      id: forms.id,
+      title : forms.title,
+      cost : forms.cost,
+      InOrOut : forms.InOrOut,
+      date : forms.date || GetDate()
+    };
+
+    try {
+      const api = await axios.post("http://localhost:8888/createItems", data);
+      if(!api.data.data){
+        console.log("something went worng"); 
+        return
+      }
+    } catch(err) {
+      console.log(err);
+    }
 
     setDataForms(prev => [...prev, {
       cost: cost,
