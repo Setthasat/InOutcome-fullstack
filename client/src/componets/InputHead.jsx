@@ -1,6 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { GetDate } from '../utils/main'
+import { GetDate } from '../utils/main'  
 import axios from 'axios'
 
 const buttonIncomeOutComeStateUp = (color) => {

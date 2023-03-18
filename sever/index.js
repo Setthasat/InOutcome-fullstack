@@ -19,7 +19,7 @@ const {
 } = require('./controller/forms.js')
 
 try {
-    const DBAddress = process.env.DB_URL || "localhost:8888";
+    const DBAddress = process.env.DB_URL
     // set("strictQuery", true);
     mongoose.connect(DBAddress);
     console.log('database connected ...')
