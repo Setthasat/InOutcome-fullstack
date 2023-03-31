@@ -13,7 +13,6 @@ const buttonIncomeOutComeStateDown = (color) => {
 
 function InputHead({ setDataForms, setFormsError }) {
 
-
   const [buttonOnToggle, setButtonOnToggle] = React.useState({
     inCome: false,
     outCome: false
@@ -113,6 +112,7 @@ function InputHead({ setDataForms, setFormsError }) {
       return
     }
 
+    
     console.log(forms)
 
     const data = {
