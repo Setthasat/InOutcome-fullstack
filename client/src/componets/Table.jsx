@@ -5,7 +5,6 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 
 function TableRow({ dataForm, setDataForms }) {
 
-    console.log(dataForm);
     const handleDelete = async(e) => {
         e.preventDefault();
         try {
